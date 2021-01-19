@@ -10,12 +10,14 @@ request({
             let list = `
             ${response.fileList.map(item => {
                 return `
+                <tr>
                     <td>${item}</td>
                     <td>
                         <a type="button" class="btn btn-primary ex" data-name=${item} href="javascript:;">执行</a>
                         <a type="button" class="btn btn-primary view" data-name=${item} href="javascript:;">查看sh</a>
                         <a type="button" class="btn btn-primary log" data-name=${item} href="javascript:;">查看log</a>
                     </td>
+                </tr>
                 `
             })}
             `
