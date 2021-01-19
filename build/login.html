@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="login-warp">
+        <div class="login">
+            <div class="login-title">
+                <h1>登录</h1>
+            </div>
+            <div class="login-form">
+                <form action="" id="form">
+                    帐号：<input type="text" name="user" id=""><br>
+                    密码：<input type="password" name="password"><br>
+                    <button class="login-btn" type="button" value="登录">登录</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.staticfile.org/jquery/3.3.0/jquery.min.js"></script>
+<script src="./js/main.js"></script>
+<script>
+(function () {
+    if (localStorage.token) {
+        location.href = 'index.html'
+    }
+    $('.login-btn').on('click', function () {
+        $.ajax({
+            type: "post",
+            url: "/api/login",
+            data: $('#form').serialize(),
+            dataType: "json",
+            success: function (response) {
+                if (response.status == 0 && response.token) {
+                    localStorage.token = response.token
+                    localStorage.shName = $('input[name="user"]').val()
+
+                    location.href = 'index.html'
+                }
+            }
+        });
+    })
+    
+}())
+
+</script>
+</html>
