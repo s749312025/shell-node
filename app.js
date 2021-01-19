@@ -36,5 +36,5 @@ const router = require('./config/router')
 app.use(router.routes()).use(router.allowedMethods())
 
 
-app.listen(3000)
-console.log('[demo] start-quick is starting at port 3000')
+app.listen(6300)
+console.log('[demo] start-quick is starting at port 6300')
