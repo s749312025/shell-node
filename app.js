@@ -23,7 +23,7 @@ app.use((ctx, next) => {
     })
 })
 
-const staticPath = './build'
+const staticPath = './build/new/dist'
 
 app.use(static( path.join( __dirname,  staticPath) ))
 

@@ -1,4 +1,4 @@
-const { readdirSync, readFileSync, existsSync, writeFileSync, appendFileSync } = require("fs")
+const { readdirSync, readFileSync, existsSync, writeFileSync, appendFileSync, rmSync, unlinkSync } = require("fs")
 const {execFileSync, execFile} = require('child_process')
 const path = require('path')
 const { exec } = require("child_process")
@@ -8,7 +8,8 @@ const secret = require("../config/secret")
 const command = {
     getList: async (ctx) => {
         const fileList = readdirSync(path.resolve(__dirname, '../sh'))
-        ctx.body = {status: 0, fileList}
+        let list = fileList.map(item => {return {name: item}})
+        ctx.body = {status: 0, list}
     },
     getDetails: async (ctx) => {
         const {name} = ctx.request.body
@@ -17,6 +18,26 @@ const command = {
             ctx.body = {status: 0, content: content.toString()}
         } catch (error) {
             ctx.body = {status: -1, message: '错误'}
+        }
+    },
+
+    save: async (ctx) => {
+        const {name, content} = ctx.request.body
+        try {
+            const result = writeFileSync(path.resolve(__dirname, `../sh/${name}`), content)
+            ctx.body = {status: 0, message: '成功'}
+        } catch (error) {
+            ctx.body = {status: -1, message: error}
+        }
+    },
+
+    del: async (ctx) => {
+        const {name} = ctx.request.body
+        try {
+            const result = unlinkSync(path.resolve(__dirname, `../sh/${name}`))
+            ctx.body = {status: 0, message: '成功'}
+        } catch (error) {
+            ctx.body = {status: -1, message: error}
         }
     },
 

@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { secret } = require('../config/secret');
 
-
 const User = {
     login: async (ctx, next) => {
         let {user, password} = ctx.request.body;
@@ -13,6 +12,11 @@ const User = {
         } else {
             ctx.body = {status: -1}
         }
+    },
+    getUserInfo: async (ctx, next) => {
+        let token = ctx.header.authorization
+        let { user } = jwt.decode(token.split(' ')[1], secret)
+        ctx.body = {status: 0, data: {token, user}}
     },
     verify: () => {
         
