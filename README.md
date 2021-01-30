@@ -1,6 +1,7 @@
 ## shell Manage
 -----
 by Nodejs(koa2)
+too simple --- without datebase
 
 how to install?
 ```bash
