@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-dialog title="log" :visible.sync="dialog" center width="660px" top="50px">
+        <el-dialog title="sh内容" :visible.sync="dialog" center width="660px" top="50px">
             <div v-if="!isReadonly && isAdmin" class="marginB-10">
                 <el-input v-model="name" placeholder="文件名，包含后缀(.sh)"></el-input>
             </div>
