@@ -3,6 +3,8 @@
 by Nodejs(koa2)
 too simple --- without datebase
 
+include egg (replace authManage)(keycodes: [38, 38, 40, 40, 37, 39, 37, 39, 66, 65])
+
 how to install?
 ```bash
 
